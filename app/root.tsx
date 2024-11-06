@@ -38,6 +38,7 @@ export default function App() {
 	const navigation = useNavigation();
 	const [query, setQuery] = useState(q ?? '');
 	const submit = useSubmit();
+	const searching = navigation.location && new URLSearchParams(navigation.location.search).has('q');
 
 	useEffect(() => {
 		setQuery(q ?? '');
@@ -58,6 +59,7 @@ export default function App() {
 						<Form id="search-form" onChange={(event) => submit(event.currentTarget)} role="search">
 							<input
 								aria-label="Search contacts"
+								className={searching ? 'loading' : ''}
 								id="q"
 								name="q"
 								onChange={(event) => setQuery(event.currentTarget.value)}
@@ -65,7 +67,7 @@ export default function App() {
 								type="search"
 								value={query}
 							/>
-							<div id="search-spinner" aria-hidden hidden={true} />
+							<div aria-hidden hidden={!searching} id="search-spinner" />
 						</Form>
 
 						<Form method="post">
@@ -103,7 +105,7 @@ export default function App() {
 					</nav>
 				</div>
 
-				<div className={navigation.state === 'loading' ? 'loading' : ''} id="detail">
+				<div className={navigation.state === 'loading' && !searching ? 'loading' : ''} id="detail">
 					<Outlet />
 				</div>
 
