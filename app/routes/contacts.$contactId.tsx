@@ -56,8 +56,8 @@ export default function Contact() {
 					</Form>
 
 					<Form
-						method="post"
 						action="destroy"
+						method="post"
 						onSubmit={(event) => {
 							const response = confirm('Please confirm you want to delete this record.');
 
