@@ -1,6 +1,6 @@
-import type { LinksFunction, LoaderFunctionArgs } from '@remix-run/node';
+import type { LinksFunction, LoaderFunctionArgs } from '@vercel/remix';
 
-import { json, redirect } from '@remix-run/node';
+import { json, redirect } from '@vercel/remix';
 import {
 	Form,
 	Links,

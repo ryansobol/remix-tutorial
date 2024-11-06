@@ -1,7 +1,7 @@
-import type { ActionFunctionArgs, LoaderFunctionArgs } from '@remix-run/node';
+import type { ActionFunctionArgs, LoaderFunctionArgs } from '@vercel/remix';
 import type { FunctionComponent } from 'react';
 
-import { json } from '@remix-run/node';
+import { json } from '@vercel/remix';
 import { Form, useFetcher, useLoaderData } from '@remix-run/react';
 import invariant from 'tiny-invariant';
 import { ContactRecord, getContact, updateContact } from '../data';
