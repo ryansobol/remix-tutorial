@@ -1,6 +1,6 @@
-# Welcome to Remix!
+# remix-tutorial
 
-- [Remix Docs](https://remix.run/docs)
+A user contacts CRUD app built with Remix and React
 
 ## Development
 
