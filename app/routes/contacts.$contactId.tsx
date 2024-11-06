@@ -4,7 +4,7 @@ import type { FunctionComponent } from 'react';
 import { json } from '@remix-run/node';
 import { Form, useLoaderData } from '@remix-run/react';
 import invariant from 'tiny-invariant';
-import { getContact } from '../data';
+import { ContactRecord, getContact } from '../data';
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
 	invariant(params.contactId, 'Missing contactId');
