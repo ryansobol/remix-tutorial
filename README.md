@@ -2,6 +2,8 @@
 
 A user contacts CRUD app built with Remix and React
 
+- [Production app on Vercel](https://remix-tutorial-ryansobol.vercel.app/)
+
 ## Development
 
 From your terminal:

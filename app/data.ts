@@ -63,7 +63,8 @@ const fakeContacts = {
 ////////////////////////////////////////////////////////////////////////////////
 // Handful of helper functions to be called from route loaders and actions
 export async function getContacts(query?: string | null) {
-	await new Promise((resolve) => setTimeout(resolve, 500));
+	// Disable delay for production
+	// await new Promise((resolve) => setTimeout(resolve, 500));
 	let contacts = await fakeContacts.getAll();
 	if (query) {
 		contacts = matchSorter(contacts, query, {
