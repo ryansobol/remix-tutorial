@@ -15,7 +15,7 @@ import {
 
 import appStylesHref from './app.css?url';
 
-import { getContacts } from './data';
+import { getContacts } from '~/data';
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: appStylesHref }];
 
