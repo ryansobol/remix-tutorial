@@ -2,6 +2,8 @@
 
 A user contacts CRUD app built with Remix and React
 
+NOTE: Need to migrate the in-memory data to a database. Currently, the data is lost when Vercel's Function instances are recycled, leading to seamingly random 404 errors.
+
 - [Production app on Vercel](https://remix-tutorial-ryansobol.vercel.app/)
 
 ## Development
