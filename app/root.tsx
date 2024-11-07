@@ -16,7 +16,7 @@ import {
 import { useEffect, useState } from 'react';
 
 import appStylesHref from './app.css?url';
-import { createEmptyContact, getContacts } from '~/data';
+import { createEmptyContact, getContacts } from './data';
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: appStylesHref }];
 
