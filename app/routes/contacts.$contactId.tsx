@@ -1,33 +1,33 @@
-import type { ActionFunctionArgs, LoaderFunctionArgs } from '@vercel/remix';
-import type { FunctionComponent } from 'react';
+import type { ActionFunctionArgs, LoaderFunctionArgs } from "@vercel/remix";
+import type { FunctionComponent } from "react";
 
-import { Form, useFetcher, useLoaderData } from '@remix-run/react';
-import { json } from '@vercel/remix';
-import invariant from 'tiny-invariant';
-import { type ContactRecord, getContact, updateContact } from '../data';
+import { Form, useFetcher, useLoaderData } from "@remix-run/react";
+import { json } from "@vercel/remix";
+import invariant from "tiny-invariant";
+import { type ContactRecord, getContact, updateContact } from "../data";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-	invariant(params.contactId, 'Missing contactId');
+	invariant(params.contactId, "Missing contactId");
 	const contact = await getContact(params.contactId);
 
 	if (!contact) {
-		throw new Response('Not Found', { status: 404 });
+		throw new Response("Not Found", { status: 404 });
 	}
 
 	return json({ contact });
 };
 
 export const action = async ({ request, params }: ActionFunctionArgs) => {
-	invariant(params.contactId, 'Missing contactId');
+	invariant(params.contactId, "Missing contactId");
 
 	const formData = await request.formData();
-	const favorite = formData.get('favorite');
+	const favorite = formData.get("favorite");
 
 	if (favorite === null) {
-		return json({ error: 'No favorite field in form data' }, { status: 400 });
+		return json({ error: "No favorite field in form data" }, { status: 400 });
 	}
 
-	return updateContact(params.contactId, { favorite: favorite === 'true' });
+	return updateContact(params.contactId, { favorite: favorite === "true" });
 };
 
 export default function Contact() {
@@ -51,7 +51,7 @@ export default function Contact() {
 						</>
 					) : (
 						<i>No Name</i>
-					)}{' '}
+					)}{" "}
 					<Favorite contact={contact} />
 				</h1>
 
@@ -72,7 +72,7 @@ export default function Contact() {
 						action="destroy"
 						method="post"
 						onSubmit={(event) => {
-							const response = confirm('Please confirm you want to delete this record.');
+							const response = confirm("Please confirm you want to delete this record.");
 
 							if (!response) {
 								event.preventDefault();
@@ -88,22 +88,22 @@ export default function Contact() {
 }
 
 const Favorite: FunctionComponent<{
-	contact: Pick<ContactRecord, 'favorite'>;
+	contact: Pick<ContactRecord, "favorite">;
 }> = ({ contact }) => {
 	const fetcher = useFetcher();
 	const favorite = fetcher.formData
-		? fetcher.formData.get('favorite') === 'true'
+		? fetcher.formData.get("favorite") === "true"
 		: contact.favorite;
 
 	return (
 		<fetcher.Form method="post">
 			<button
-				aria-label={favorite ? 'Remove from favorites' : 'Add to favorites'}
+				aria-label={favorite ? "Remove from favorites" : "Add to favorites"}
 				name="favorite"
 				type="submit"
-				value={favorite ? 'false' : 'true'}
+				value={favorite ? "false" : "true"}
 			>
-				{favorite ? '★' : '☆'}
+				{favorite ? "★" : "☆"}
 			</button>
 		</fetcher.Form>
 	);

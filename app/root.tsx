@@ -1,4 +1,4 @@
-import type { LinksFunction, LoaderFunctionArgs } from '@vercel/remix';
+import type { LinksFunction, LoaderFunctionArgs } from "@vercel/remix";
 
 import {
 	Form,
@@ -10,19 +10,19 @@ import {
 	ScrollRestoration,
 	useLoaderData,
 	useNavigation,
-	useSubmit
-} from '@remix-run/react';
-import { json, redirect } from '@vercel/remix';
-import { useEffect, useState } from 'react';
+	useSubmit,
+} from "@remix-run/react";
+import { json, redirect } from "@vercel/remix";
+import { useEffect, useState } from "react";
 
-import appStylesHref from './app.css?url';
-import { createEmptyContact, getContacts } from './data';
+import appStylesHref from "./app.css?url";
+import { createEmptyContact, getContacts } from "./data";
 
-export const links: LinksFunction = () => [{ rel: 'stylesheet', href: appStylesHref }];
+export const links: LinksFunction = () => [{ rel: "stylesheet", href: appStylesHref }];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
 	const url = new URL(request.url);
-	const q = url.searchParams.get('q');
+	const q = url.searchParams.get("q");
 	const contacts = await getContacts(q);
 
 	return json({ contacts, q });
@@ -36,12 +36,12 @@ export const action = async () => {
 export default function App() {
 	const { contacts, q } = useLoaderData<typeof loader>();
 	const navigation = useNavigation();
-	const [query, setQuery] = useState(q ?? '');
+	const [query, setQuery] = useState(q ?? "");
 	const submit = useSubmit();
-	const searching = navigation.location && new URLSearchParams(navigation.location.search).has('q');
+	const searching = navigation.location && new URLSearchParams(navigation.location.search).has("q");
 
 	useEffect(() => {
-		setQuery(q ?? '');
+		setQuery(q ?? "");
 	}, [q]);
 
 	return (
@@ -61,13 +61,13 @@ export default function App() {
 							onChange={(event) => {
 								const isFirstSearch = q === null;
 								submit(event.currentTarget, {
-									replace: !isFirstSearch
+									replace: !isFirstSearch,
 								});
 							}}
 						>
 							<input
 								aria-label="Search contacts"
-								className={searching ? 'loading' : ''}
+								className={searching ? "loading" : ""}
 								id="q"
 								name="q"
 								onChange={(event) => setQuery(event.currentTarget.value)}
@@ -89,7 +89,7 @@ export default function App() {
 									<li key={contact.id}>
 										<NavLink
 											className={({ isActive, isPending }) =>
-												isActive ? 'active' : isPending ? 'pending' : ''
+												isActive ? "active" : isPending ? "pending" : ""
 											}
 											to={`/contacts/${contact.id}`}
 										>
@@ -99,7 +99,7 @@ export default function App() {
 												</>
 											) : (
 												<i>No Name</i>
-											)}{' '}
+											)}{" "}
 											{contact.favorite ? <span>★</span> : null}
 										</NavLink>
 									</li>
@@ -113,7 +113,7 @@ export default function App() {
 					</nav>
 				</div>
 
-				<div className={navigation.state === 'loading' && !searching ? 'loading' : ''} id="detail">
+				<div className={navigation.state === "loading" && !searching ? "loading" : ""} id="detail">
 					<Outlet />
 				</div>
 

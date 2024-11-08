@@ -21,16 +21,5 @@
 		"rules": {
 			"recommended": true
 		}
-	},
-	"javascript": {
-		"formatter": {
-			"quoteStyle": "single",
-			"trailingCommas": "none"
-		}
-	},
-	"css": {
-		"formatter": {
-			"quoteStyle": "single"
-		}
 	}
 }

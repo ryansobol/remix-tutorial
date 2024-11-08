@@ -1,24 +1,24 @@
-import type { ActionFunctionArgs, LoaderFunctionArgs } from '@vercel/remix';
+import type { ActionFunctionArgs, LoaderFunctionArgs } from "@vercel/remix";
 
-import { Form, useLoaderData, useNavigate } from '@remix-run/react';
-import { json, redirect } from '@vercel/remix';
-import invariant from 'tiny-invariant';
+import { Form, useLoaderData, useNavigate } from "@remix-run/react";
+import { json, redirect } from "@vercel/remix";
+import invariant from "tiny-invariant";
 
-import { getContact, updateContact } from '../data';
+import { getContact, updateContact } from "../data";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-	invariant(params.contactId, 'Missing contactId param');
+	invariant(params.contactId, "Missing contactId param");
 
 	const contact = await getContact(params.contactId);
 
 	if (!contact) {
-		throw new Response('Not Found', { status: 404 });
+		throw new Response("Not Found", { status: 404 });
 	}
 	return json({ contact });
 };
 
 export const action = async ({ params, request }: ActionFunctionArgs) => {
-	invariant(params.contactId, 'Missing contactId param');
+	invariant(params.contactId, "Missing contactId param");
 
 	const formData = await request.formData();
 	const updates = Object.fromEntries(formData);
