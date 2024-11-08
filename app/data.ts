@@ -96,6 +96,7 @@ export async function deleteContact(id: string) {
 	fakeContacts.destroy(id);
 }
 
+// biome-ignore lint/complexity/noForEach: Fix later
 [
 	{
 		avatar: 'https://sessionize.com/image/124e-400o400o2-wHVdAuNaxi8KJrgtN3ZKci.jpg',

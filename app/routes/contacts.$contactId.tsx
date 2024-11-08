@@ -1,10 +1,10 @@
 import type { ActionFunctionArgs, LoaderFunctionArgs } from '@vercel/remix';
 import type { FunctionComponent } from 'react';
 
-import { json } from '@vercel/remix';
 import { Form, useFetcher, useLoaderData } from '@remix-run/react';
+import { json } from '@vercel/remix';
 import invariant from 'tiny-invariant';
-import { ContactRecord, getContact, updateContact } from '../data';
+import { type ContactRecord, getContact, updateContact } from '../data';
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
 	invariant(params.contactId, 'Missing contactId');
@@ -100,6 +100,7 @@ const Favorite: FunctionComponent<{
 			<button
 				aria-label={favorite ? 'Remove from favorites' : 'Add to favorites'}
 				name="favorite"
+				type="submit"
 				value={favorite ? 'false' : 'true'}
 			>
 				{favorite ? '★' : '☆'}

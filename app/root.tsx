@@ -1,6 +1,5 @@
 import type { LinksFunction, LoaderFunctionArgs } from '@vercel/remix';
 
-import { json, redirect } from '@vercel/remix';
 import {
 	Form,
 	Links,
@@ -13,6 +12,7 @@ import {
 	useNavigation,
 	useSubmit
 } from '@remix-run/react';
+import { json, redirect } from '@vercel/remix';
 import { useEffect, useState } from 'react';
 
 import appStylesHref from './app.css?url';
@@ -64,7 +64,6 @@ export default function App() {
 									replace: !isFirstSearch
 								});
 							}}
-							role="search"
 						>
 							<input
 								aria-label="Search contacts"

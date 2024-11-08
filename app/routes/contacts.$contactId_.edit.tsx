@@ -1,7 +1,7 @@
 import type { ActionFunctionArgs, LoaderFunctionArgs } from '@vercel/remix';
 
-import { json, redirect } from '@vercel/remix';
 import { Form, useLoaderData, useNavigate } from '@remix-run/react';
+import { json, redirect } from '@vercel/remix';
 import invariant from 'tiny-invariant';
 
 import { getContact, updateContact } from '../data';
